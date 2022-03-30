@@ -29,6 +29,7 @@ RUN apt-get update -y && apt-get upgrade -y \
 	&& apt-get install -y xrdp \
 	&& sed -e 's/%sudo\(.*\)ALL$/%sudo\1NOPASSWD:ALL/g' -i /etc/sudoers \
 	&& useradd -m ${user} -s /bin/bash \
+	&& usermod -aG sudo ${user} \
 	&& adduser ${user} ssl-cert \
 	&& echo ${user}':'${password} | chpasswd \
 	&& mkdir -p /var/run/sshd && mkdir xrdp && cd xrdp && rm -rf xrdp && cd /etc/xrdp \
