@@ -45,5 +45,6 @@ EXPOSE 3389 22
 
 CMD service rsyslog start \
 	&& service ssh start \
+	&& rm -f /var/run/xrdp/xrdp-sesman.pid || true \
 	&& service xrdp start \
 	&& tail -f /var/log/syslog
